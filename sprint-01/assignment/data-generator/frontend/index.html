@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Generator AI</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>Data Generator AI</h1>
+    <p>Enter a prompt and select a type to generate data:</p>
+    <form id="dataForm">
+      <input type="text" id="input" placeholder="Enter your prompt" />
+      <select id="type">
+        <option value="story">Story</option>
+        <option value="shayari">Shayari</option>
+        <option value="joke">Joke</option>
+        <option value="fact">Fact</option>
+        <option value="poem">Poem</option>
+      </select>
+      <button type="button" onclick="generateData()">GENERATE</button>
+    </form>
+    <div id="output"></div>
+  </body>
+</html>
+
+<script src="./index.js"></script>
