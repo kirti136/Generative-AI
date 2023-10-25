@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Converter App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      data-name="vs/editor/editor.main"
+      href="./package/min/vs/editor/editor.main.css"
+    />
+    <script src="./package/min/vs/loader.js"></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <select id="languageSelect">
+        <option value="">Select Language</option>
+        <option value="java">Java</option>
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+        <option value="cpp">C++</option>
+        <option value="c">C</option>
+        <option value="csharp">C#</option>
+        <option value="php">PHP</option>
+      </select>
+      <button id="convertButton">Convert</button>
+      <button id="debugButton">Debug</button>
+      <button id="qualityCheckButton">Quality Check</button>
+    </div>
+    <!-- Editor Containers -->
+    <div id="editorContainer">
+      <!-- Editor -->
+      <div class="editor">
+        <textarea id="codeInput" placeholder="Enter your code here"></textarea>
+      </div>
+      <!-- Output -->
+      <div class="output">
+        <textarea
+          id="codeOutput"
+          placeholder="Converted code will appear here"
+        ></textarea>
+      </div>
+    </div>
+    <!-- Monaco -->
+    <div id="editor" style="height: 400px"></div>
+  </body>
+</html>
