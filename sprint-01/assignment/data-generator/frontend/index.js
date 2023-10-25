@@ -1,7 +1,7 @@
 async function generateData() {
     const input = document.getElementById("input").value;
     const type = document.getElementById("type").value;
-    const baseURL = "http://localhost:8080"
+    const baseURL = "https://tense-pear-python.cyclic.app/"
 
     const response = await fetch(`${baseURL}/get-data`, {
         method: "POST",
