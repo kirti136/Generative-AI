@@ -7,7 +7,7 @@ require.config({
 require(["vs/editor/editor.main"], function () {
     // Initialize Monaco Editor
     var editor = monaco.editor.create(document.getElementById("editor"), {
-        value: "// Write your code here",
+        value: "// console.log('Hello')",
         language: "javascript",
     });
 
@@ -15,8 +15,41 @@ require(["vs/editor/editor.main"], function () {
     const convertButton = document.getElementById("convertButton");
     const debugButton = document.getElementById("debugButton");
     const qualityCheckButton = document.getElementById("qualityCheckButton");
+    const runButton = document.getElementById("runButton")
     const output = document.getElementById("output");
     const baseURL = "http://localhost:8080";
+
+    // Event listener for the "Run" button
+    runButton.addEventListener("click", async () => {
+        const code = editor.getValue();
+
+        if (!code) {
+            alert("Please enter code for executing.");
+            return;
+        }
+
+        try {
+            const response = await fetch(`${baseURL}/execute-code`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ code }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                output.innerHTML = `<div class="preclass"><code class="language-javascript">${data.output}</code></div>`;
+                Prism.highlightAll();
+            } else {
+                alert("Code executing failed.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("An error occurred during code execution.");
+        }
+    });
+
 
     // Event listener for the "Convert" button
     convertButton.addEventListener("click", async () => {
@@ -106,7 +139,7 @@ require(["vs/editor/editor.main"], function () {
 
             if (response.ok) {
                 const data = await response.json();
-                output.innerHTML = `<div class="preclass"><code class="language-javascript">${data.qualityAssessment}</code></div>
+                output.innerHTML = `<pre class="preclass"><code class="language-javascript">${data.qualityAssessment}</code></pre>
                 `;
                 Prism.highlightAll();
             } else {

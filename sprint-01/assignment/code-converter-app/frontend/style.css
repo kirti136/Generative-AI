@@ -33,18 +33,18 @@ button {
   border-radius: 0.5rem;
 }
 select,
-button:hover{
-text-decoration: underline;
-text-decoration-color: #41db9870;
-cursor: pointer;
+button:hover {
+  text-decoration: underline;
+  text-decoration-color: #41db9870;
+  cursor: pointer;
 }
-body{
+body {
   background-color: #0a1b24;
 }
 #editorContainer {
   display: flex;
   width: 95%;
-  margin: 40px auto;
+  margin: 30px auto;
   gap: 20px;
   height: 600px;
 }
@@ -64,4 +64,9 @@ body{
   /* border: 1px solid red; */
   height: fit-content;
   margin: auto;
+}
+
+#runButton {
+  background-color: #15b371;
+  margin: 0px 0px 0px 40px;
 }

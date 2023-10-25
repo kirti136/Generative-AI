@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 8000;
 const cors = require("cors");
 const OpenAI = require("openai");
 const apiKey = process.env.APIKEY;
+const bodyParser = require("body-parser");
+const { exec } = require("child_process");
 
 const openai = new OpenAI({
   apiKey: apiKey,
@@ -13,9 +15,32 @@ const openai = new OpenAI({
 app.use(express.json());
 app.use(cors());
 app.use(express.static("frontend"));
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome to Code-Converter-App" });
+});
+
+// Route for code execution
+app.post("/execute-code", (req, res) => {
+  const { code } = req.body;
+
+  // Execute JavaScript code using Node.js
+  const sanitizedCode = code.trim().replace(/"/g, '\\"');
+  exec(`node -e "${sanitizedCode}"`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error.message}`);
+      res.status(500).json({ error: "Code execution failed" });
+      return;
+    }
+    if (stderr) {
+      console.error(`Stderr: ${stderr}`);
+    }
+
+    const output = stdout || "No output";
+
+    res.json({ output });
+  });
 });
 
 app.post("/convert-code", async (req, res) => {
@@ -98,12 +123,12 @@ app.post("/quality-check", async (req, res) => {
         },
         {
           role: "user",
-          content: `Check the quality of the following code:\n${code}. \nPlease evaluate the following code for its quality and provide a score in percentage (max 100%) for each of the following factors. \nAdditionally, provide explanations or comments on the code's adherence to the following aspects:
-                    \n1. Code Consitency : Provide percentage based on the provided code
-                    \n2. Code Performance : Provide percentage based on the provided code
-                    \n3. Error Handling : Provide percentage based on the provided code
-                    \n4. Code Readability : Provide percentage based on the provided code
-                    \n5. Code Complexity : Provide percentage based on the provided code`,
+          content: `Check the quality of the following code:\n${code}.\nPlease evaluate the following code for its quality and provide a score in percentage (max 100%) for each of the following factors. Additionally, provide explanations or comments on the code's adherence to the following aspects, and each factor should start with a new line:
+          \n 1. Code Consistency: Provide a percentage based on the provided code.
+          \n 2. Code Performance: Provide a percentage based on the provided code.
+          \n 3. Error Handling: Provide a percentage based on the provided code.
+          \n 4. Code Readability: Provide a percentage based on the provided code.
+          \n 5. Code Complexity: Provide a percentage based on the provided code.`,
         },
       ],
       model: "gpt-3.5-turbo",
