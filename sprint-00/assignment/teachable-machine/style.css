@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+body {
+  background-image: url("./images/images.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+}
+
+#button{
+    padding: 15px 30px;
+    font-size: large;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+}
+#canvas{
+    margin-top: 30px;
+    height: 300px;
+    border-radius: 10px;
+}
+
+#label-container{
+    margin-top: 20px;
+}
+
+#label-container div{
+    width: 20%;
+    margin: auto;
+    padding: 10px 0;
+    font-weight: bold;
+}
