@@ -7,10 +7,11 @@ function InputForm() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [targetLanguage, setTargetLanguage] = useState(""); // For translation
+  const baseURL = "http://localhost:8080"
 
   const handleTextGeneration = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/generate-text", {
+      const response = await axios.post(`${baseURL}/generate-text`, {
         prompt: input,
       });
       setOutput(response.data.generatedText);
@@ -23,7 +24,7 @@ function InputForm() {
   const handleTextSummarization = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/summarize-text",
+        `${baseURL}/summarize-text`,
         {
           textToSummarize: input,
         }
@@ -38,7 +39,7 @@ function InputForm() {
   const handleTextTranslation = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/translate-text",
+        `${baseURL}/translate-text`,
         {
           textToTranslate: input,
           targetLanguage: targetLanguage,
