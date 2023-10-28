@@ -4,15 +4,12 @@ const axios = require('axios');
 const { MongoClient } = require('mongodb');
 const collectionName = 'github_repositories';
 const cors = require("cors")
-
 const app = express();
-const port = process.env.port || 8000; 
-
-// MongoDB connection URL (replace with your own database URL)
-const mongoUrl = 'mongodb://127.0.0.1:27017/githubdata';
+const port = process.env.port || 8000;
+const mongoUrl = 'mongodb://127.0.0.1:27017/';
 // Initialize the MongoDB client
 const client = new MongoClient(mongoUrl);
-
+// console.log(client);
 const repositoryModel = {
     id: Number,
     name: String,
@@ -30,9 +27,8 @@ const repositoryModel = {
     },
 };
 
-app.use(express.json()); // To parse JSON requests
+app.use(express.json());
 app.use(cors())
-// Global error handler
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
@@ -45,10 +41,10 @@ app.get("/", (req, res) => {
 function validateRepositoryData(repository) {
     for (const key in repositoryModel) {
         if (typeof repository[key] !== typeof repositoryModel[key]) {
-            return false; 
+            return false;
         }
     }
-    return true; 
+    return true;
 }
 
 async function saveDataToMongo(data) {
@@ -56,7 +52,10 @@ async function saveDataToMongo(data) {
         // Connect to the MongoDB database
         await client.connect();
         const db = client.db('githubdata');
+        // console.log(db);
         const collection = db.collection(collectionName);
+        // console.log("COLLECTION", collection.s.namespace.collection);
+        // const collection = collectionData.s.namespace.collection
 
         for (const repository of data) {
             const existingRepo = await collection.findOne({ id: repository.id });
@@ -83,6 +82,7 @@ app.get('/github', async (req, res) => {
         await client.connect();
         const db = client.db('githubdata');
         const collection = db.collection(collectionName);
+        // console.log(collection);
 
         const allData = await collection.find({}).toArray();
 
@@ -106,6 +106,7 @@ app.post('/github', async (req, res) => {
         const response = await axios.get(url);
 
         const githubData = response.data;
+        // console.log(response.data);
         if (githubData && Array.isArray(githubData)) {
             await saveDataToMongo(githubData);
         }
