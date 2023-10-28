@@ -24,7 +24,6 @@ app.post("/generate-text", async (req, res) => {
   try {
     // Retrieve user-provided code and target language from the request
     const { prompt } = req.body;
-
     // Use the openai library to send a prompt to GPT-3 for code conversion
     const response = await openai.chat.completions.create({
       messages: [
