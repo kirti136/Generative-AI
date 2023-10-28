@@ -50,7 +50,7 @@ app.post("/generate-text", async (req, res) => {
     res.json({ generatedText });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Text generation failed" });
+    res.status(500).json({ error: "Text generation failed", message: error });
   }
 });
 
