@@ -5,12 +5,16 @@ const PORT = process.env.PORT || 8000;
 const cors = require("cors");
 const OpenAI = require("openai");
 const apiKey = process.env.APIKEY;
+const bodyParser = require("body-parser");
+
 
 const openai = new OpenAI({
   apiKey: apiKey,
 });
 
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(express.static("frontend"));
 app.use(cors());
 
 app.get("/", (req, res) => {
