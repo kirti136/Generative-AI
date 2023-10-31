@@ -1,0 +1,50 @@
+[
+    {
+        "_id": 1,
+        "name": "Biryani",
+        "price": 10.99,
+        "available": true
+    },
+    {
+        "_id": 2,
+        "name": "Pizza",
+        "price": 8.99,
+        "available": false
+    },
+    {
+        "_id": 3,
+        "name": "Burger",
+        "price": 5.99,
+        "available": true
+    },
+    {
+        "_id": 4,
+        "name": "Fried Chicken",
+        "price": 12.99,
+        "available": true
+    },
+    {
+        "_id": 5,
+        "name": "Sushi",
+        "price": 15.99,
+        "available": false
+    },
+    {
+        "_id": 6,
+        "name": "Steak",
+        "price": 19.99,
+        "available": true
+    },
+    {
+        "_id": 7,
+        "name": "Salad",
+        "price": 8.99,
+        "available": true
+    },
+    {
+        "_id": 8,
+        "name": "Ice Cream",
+        "price": 4.99,
+        "available": true
+    }
+]

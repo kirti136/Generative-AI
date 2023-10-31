@@ -1,0 +1,56 @@
+[
+    {
+        "order_id": 1,
+        "customer_name": "John",
+        "items": {
+            "1": 2,
+            "2": 1
+        },
+        "status": "received"
+    },
+    {
+        "order_id": 2,
+        "customer_name": "Alice",
+        "items": {
+            "3": 3
+        },
+        "status": "ready for pickup"
+    },
+    {
+        "order_id": 3,
+        "customer_name": "kirti",
+        "items": [
+            {
+                "dish_id": 1,
+                "quantity": 2
+            },
+            {
+                "dish_id": 2,
+                "quantity": 1
+            }
+        ],
+        "status": "received"
+    },
+    {
+        "order_id": 4,
+        "customer_name": "dhiraj",
+        "items": [
+            {
+                "dish_id": 2,
+                "quantity": 1
+            }
+        ],
+        "status": "received"
+    },
+    {
+        "order_id": 5,
+        "customer_name": "shubhu",
+        "items": [
+            {
+                "dish_id": 1,
+                "quantity": 2
+            }
+        ],
+        "status": "received"
+    }
+]
