@@ -281,13 +281,7 @@ def review_orders():
         print("Filtered Orders:")
         print(order_table)
 
-
-
-
-
-
-
-
+# Main Program 
 while True:
     if user_role == "guest":
         guest_menu = PrettyTable()

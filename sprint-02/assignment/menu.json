@@ -3,13 +3,13 @@
         "_id": 1,
         "name": "Biryani",
         "price": 10.99,
-        "available": true
+        "available": false
     },
     {
         "_id": 2,
         "name": "Pizza",
         "price": 8.99,
-        "available": false
+        "available": true
     },
     {
         "_id": 3,
@@ -21,12 +21,6 @@
         "_id": 4,
         "name": "Fried Chicken",
         "price": 12.99,
-        "available": true
-    },
-    {
-        "_id": 5,
-        "name": "Sushi",
-        "price": 15.99,
         "available": false
     },
     {
@@ -45,6 +39,12 @@
         "_id": 8,
         "name": "Ice Cream",
         "price": 4.99,
-        "available": true
+        "available": false
+    },
+    {
+        "_id": 9,
+        "name": "Rasgulla",
+        "price": 5.75,
+        "available": false
     }
 ]

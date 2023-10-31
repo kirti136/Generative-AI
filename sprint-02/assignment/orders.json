@@ -6,7 +6,7 @@
             "1": 2,
             "2": 1
         },
-        "status": "received"
+        "status": "delivered"
     },
     {
         "order_id": 2,
@@ -40,7 +40,7 @@
                 "quantity": 1
             }
         ],
-        "status": "received"
+        "status": "delivered"
     },
     {
         "order_id": 5,
@@ -52,5 +52,31 @@
             }
         ],
         "status": "received"
+    },
+    {
+        "order_id": 6,
+        "customer_name": "Shruti",
+        "items": [
+            {
+                "dish_id": 4,
+                "quantity": 3
+            },
+            {
+                "dish_id": 8,
+                "quantity": 1
+            }
+        ],
+        "status": "received"
+    },
+    {
+        "order_id": 7,
+        "customer_name": "Rakesh",
+        "items": [
+            {
+                "dish_id": 2,
+                "quantity": 1
+            }
+        ],
+        "status": "preparing"
     }
 ]
