@@ -281,6 +281,40 @@ def review_orders():
         print("Filtered Orders:")
         print(order_table)
 
+# Function to calculate the total price of an order
+def calculate_total_price(order, menu):
+    total_price = 0
+    items = order["items"]
+    
+    if isinstance(items, list):
+        for item in items:
+            dish = next((dish for dish in menu if dish["_id"] == item["dish_id"]), None)
+            if dish:
+                total_price += dish["price"] * item["quantity"]
+    elif isinstance(items, dict):
+        for dish_id, quantity in items.items():
+            dish = next((dish for dish in menu if dish["_id"] == int(dish_id)), None)
+            if dish:
+                total_price += dish["price"] * quantity
+    
+    return total_price
+
+# Function to generate bills for delivered orders
+def generate_bills(orders, menu):
+    total_billing_cost = 0
+    
+    for order in orders:
+        if order["status"] == "delivered":
+            total_price = calculate_total_price(order, menu)
+            total_billing_cost += total_price
+
+    # Save the billing cost to "bills.json"
+    with open('bills.json', 'w') as bills_file:
+        json.dump({"total_billing_cost": total_billing_cost}, bills_file, indent=4)
+
+    print(f"Total billing cost for delivered orders: ${total_billing_cost}")
+    print("Billing details saved in bills.json")
+
 # Main Program 
 while True:
     if user_role == "guest":
@@ -301,7 +335,7 @@ while True:
             break
         else:
             print("Invalid choice. Please choose a valid option (1 or 2).")
-
+    # USER
     elif user_role == "user":
         user_menu = PrettyTable()
         user_menu.field_names = ["Option", "Description"]
@@ -322,7 +356,7 @@ while True:
             user_role = "guest"
         else:
             print("Invalid choice. Please choose a valid option (1-3).")
-
+    # STAFF
     elif user_role == "staff":
         staff_menu = PrettyTable()
         staff_menu.field_names = ["Option", "Description"]
@@ -332,12 +366,13 @@ while True:
         staff_menu.add_row(["4", "Take a new order"])
         staff_menu.add_row(["5", "Update order status"])
         staff_menu.add_row(["6", "Review all orders"])
-        staff_menu.add_row(["7", "Exit"])
+        staff_menu.add_row(["7", "Generate Bills"])
+        staff_menu.add_row(["8", "Exit"])
 
         print("\nZesty Zomato Management System:")
         print(staff_menu)
 
-        choice = input("Enter your choice (1-7): ")
+        choice = input("Enter your choice (1-8): ")
 
         if choice == '1':
             add_dish()
@@ -352,7 +387,9 @@ while True:
         elif choice == '6':
             review_orders()
         elif choice == '7':
+            generate_bills(orders, menu)
+        elif choice == '8':
             print("Thank you for using Zesty Zomato Management System. Goodbye!")
             break
         else:
-            print("Invalid choice. Please choose a valid option (1-7).")
+            print("Invalid choice. Please choose a valid option (1-8).")
