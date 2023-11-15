@@ -1,0 +1,87 @@
+**Problem 1:**
+db.createCollection("Customers")
+
+**Problem 2:**
+db.Customers.insertMany([
+    { id: 1, name: 'John Doe', email: 'john@example.com', address: '123 Main St, Anytown', phone_number: '123-456-7890' },
+    { id: 2, name: 'Alice Smith', email: 'alice@example.com', address: '456 Oak Ave, Sometown', phone_number: '987-654-3210' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', address: '789 Elm St, Othertown', phone_number: '555-123-4567' },
+    { id: 4, name: 'Emily Brown', email: 'emily@example.com', address: '321 Cedar St, Another Town', phone_number: '222-333-4444' },
+    { id: 5, name: 'David Lee', email: 'david@example.com', address: '555 Pine St, Different Town', phone_number: '777-888-9999' }
+]);
+
+**Problem 3:**
+db.Customers.find({});
+
+**Problem 4:**
+db.Customers.find({}, { name: 1, email: 1, _id: 0 });
+
+**Problem 5:**
+db.Customers.findOne({ id: 3 });
+
+**Problem 6:**
+db.Customers.find({ name: /^A/ });
+
+**Problem 7:**
+db.Customers.find().sort({ name: -1 });
+
+**Problem 8:**
+db.Customers.updateOne({ id: 4 }, { $set: { address: 'New Address' } });
+
+**Problem 9:**
+db.Customers.find().sort({ id: 1 }).limit(3);
+
+**Problem 10:**
+db.Customers.deleteOne({ id: 2 });
+
+**Problem 11:**
+db.Customers.countDocuments();
+
+**Problem 12:**
+db.Customers.find().sort({ id: 1 }).skip(2);
+
+**Problem 13:**
+db.Customers.find({ id: { $gt: 2 }, name: /^B/ });
+
+**Problem 14:**
+db.Customers.find({ $or: [ { id: { $lt: 3 } }, { name: /s$/ } ] });
+
+**Problem 15:**
+db.Customers.find({ $or: [ { phone_number: null }, { phone_number: '' } ] });
+
+**Problem 16:**
+db.createCollection("Restaurants")
+
+**Problem 17:**
+db.Restaurants.insertMany([
+    { id: 1, name: 'Restaurant A', location: 'New York', cuisine_type: 'Italian', average_rating: 4.5, delivery_available: true },
+    { id: 2, name: 'Restaurant B', location: 'Los Angeles', cuisine_type: 'Mexican', average_rating: 4.0, delivery_available: false },
+    { id: 3, name: 'Restaurant C', location: 'New York', cuisine_type: 'Japanese', average_rating: 4.8, delivery_available: true },
+    { id: 4, name: 'Restaurant D', location: 'San Francisco', cuisine_type: 'American', average_rating: 3.9, delivery_available: false },
+    { id: 5, name: 'Restaurant E', location: 'Chicago', cuisine_type: 'Chinese', average_rating: 4.2, delivery_available: true }
+]);
+
+**Problem 18:**
+db.Restaurants.find().sort({ average_rating: -1 });
+
+**Problem 19:**
+db.Restaurants.find({ delivery_available: true, average_rating: { $gt: 4 } });
+
+**Problem 20:**
+db.Restaurants.find({ $or: [ { cuisine_type: null }, { cuisine_type: '' } ] });
+
+**Problem 21:**
+db.Restaurants.countDocuments({ delivery_available: true });
+
+**Problem 22:**
+db.Restaurants.find({ location: /New York/ });
+
+**Problem 23:**
+db.Restaurants.aggregate([{ $group: { _id: null, average_rating: { $avg: "$average_rating" } } }]);
+
+**Problem 24:**
+db.Restaurants.find().sort({ average_rating: -1 }).limit(5);
+
+**Problem 25:**
+db.Restaurants.deleteOne({ id: 3 });
+
