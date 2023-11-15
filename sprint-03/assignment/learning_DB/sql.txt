@@ -1,0 +1,101 @@
+**Problem 1:**
+CREATE TABLE Customers (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    address VARCHAR(255),
+    phone_number VARCHAR(20)
+);
+
+
+**Problem 2:**
+INSERT INTO Customers (id, name, email, address, phone_number)
+VALUES
+    (1, 'John Doe', 'john@example.com', '123 Main St, Anytown', '123-456-7890'),
+    (2, 'Alice Smith', 'alice@example.com', '456 Oak Ave, Sometown', '987-654-3210'),
+    (3, 'Bob Johnson', 'bob@example.com', '789 Elm St, Othertown', '555-123-4567'),
+    (4, 'Emily Brown', 'emily@example.com', '321 Cedar St, Another Town', '222-333-4444'),
+    (5, 'David Lee', 'david@example.com', '555 Pine St, Different Town', '777-888-9999');
+
+
+**Problem 3:**
+SELECT * FROM Customers;
+
+**Problem 4:**
+SELECT name, email FROM Customers;
+
+**Problem 5:**
+SELECT * FROM Customers WHERE id = 3;
+
+**Problem 6:**
+SELECT * FROM Customers WHERE name LIKE 'A%';
+
+**Problem 7:**
+SELECT * FROM Customers ORDER BY name DESC;
+
+**Problem 8:**
+UPDATE Customers SET address = 'New Address' WHERE id = 4;
+
+**Problem 9:**
+SELECT * FROM Customers ORDER BY id ASC LIMIT 3;
+
+**Problem 10:**
+DELETE FROM Customers WHERE id = 2;
+
+**Problem 11:**
+SELECT COUNT(*) FROM Customers;
+
+**Problem 12:**
+SELECT * FROM Customers ORDER BY id ASC OFFSET 2;
+
+**Problem 13:**
+SELECT * FROM Customers WHERE id > 2 AND name LIKE 'B%';
+
+**Problem 14:**
+SELECT * FROM Customers WHERE id < 3 OR name LIKE '%s';
+
+**Problem 15:**
+SELECT * FROM Customers WHERE phone_number IS NULL OR phone_number = '';
+
+**Problem 16:**
+CREATE TABLE Restaurants (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    location VARCHAR(255),
+    cuisine_type VARCHAR(255),
+    average_rating DECIMAL(3, 2),
+    delivery_available BOOLEAN
+);
+
+**Problem 17:**
+INSERT INTO Restaurants (id, name, location, cuisine_type, average_rating, delivery_available)
+VALUES
+    (1, 'Restaurant A', 'New York', 'Italian', 4.5, true),
+    (2, 'Restaurant B', 'Los Angeles', 'Mexican', 4.0, false),
+    (3, 'Restaurant C', 'New York', 'Japanese', 4.8, true),
+    (4, 'Restaurant D', 'San Francisco', 'American', 3.9, false),
+    (5, 'Restaurant E', 'Chicago', 'Chinese', 4.2, true);
+
+**Problem 18:**
+SELECT * FROM Restaurants ORDER BY average_rating DESC;
+
+**Problem 19:**
+SELECT * FROM Restaurants WHERE delivery_available = 1 AND average_rating > 4;
+
+**Problem 20:**
+SELECT * FROM Restaurants WHERE cuisine_type IS NULL OR cuisine_type = '';
+
+**Problem 21:**
+SELECT COUNT(*) FROM Restaurants WHERE delivery_available = 1;
+
+**Problem 22:**
+SELECT * FROM Restaurants WHERE location LIKE '%New York%';
+
+**Problem 23:**
+SELECT AVG(average_rating) AS average_rating FROM Restaurants;
+
+**Problem 24:**
+SELECT * FROM Restaurants ORDER BY average_rating DESC LIMIT 5;
+
+**Problem 25:**
+DELETE FROM Restaurants WHERE id = 3;
